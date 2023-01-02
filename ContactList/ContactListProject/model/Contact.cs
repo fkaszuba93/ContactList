@@ -19,7 +19,7 @@ namespace ContactListProject.model
 
         public static Contact Parse(string csvData)
         {
-            Regex dataFormatRegex = new Regex("^[0-9]+,[0-9]+,[A-Za-z]+,[A-Za-z ]+,[A-Za-z ]+,[A-Za-z ]+,[A-Za-z ]+(,[0-9]{10})+$");
+            Regex dataFormatRegex = new Regex("^([0-9]+,){2}([A-Za-z ]+,){4}[A-Za-z ]+(,[0-9]{10})+$");
             if (!dataFormatRegex.IsMatch(csvData))
             {
                 throw new ArgumentException("Invalid data format: " + csvData);
