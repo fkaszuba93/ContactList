@@ -40,5 +40,21 @@ namespace ContactListProject.model
         {
             return contactList.ConvertAll(contact => contact.ToString());
         }
+
+        public List<Contact> ToHierarchyTree()
+        {
+            List<Contact> hierarchyTree = new List<Contact>(contactList);
+            foreach (Contact contact in hierarchyTree)
+            {
+                var subordinates =
+                    from sub in hierarchyTree
+                    where sub.ParentId == contact.RowId
+                    orderby sub.RowId ascending
+                    select sub;
+                contact.Subordinates = new List<Contact>(subordinates);
+            }
+            hierarchyTree.RemoveAll(contact => contact.ParentId != 0);
+            return hierarchyTree;
+        }
     }
 }

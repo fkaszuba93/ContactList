@@ -15,7 +15,6 @@ namespace ContactListProject.model
         public string Position { get; }
         public List<string> PhoneNumbers { get; }
         public List<Contact> Subordinates { get; set; }
-        public bool IsPrinted { get; set; }
 
         public static Contact Parse(string csvData)
         {
