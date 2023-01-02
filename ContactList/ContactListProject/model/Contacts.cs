@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace ContactListProject.model
@@ -24,6 +25,15 @@ namespace ContactListProject.model
                 contacts.contactList.Add(Contact.Parse(line));
             }
             return contacts;
+        }
+
+        public void SortList()
+        {
+            var sortedList = 
+                from contact in contactList
+                orderby contact.RowId ascending
+                select contact;
+            contactList = new List<Contact>(sortedList);
         }
 
         public List<string> ToStringList()

@@ -21,6 +21,7 @@ namespace ContactListProject
         private void Form_Load(object sender, EventArgs e)
         {
             Contacts contacts = Contacts.ReadFromFile("c:\\fk\\temp\\companies_data.csv");
+            contacts.SortList();
             List<string> items = contacts.ToStringList();
             foreach (string item in items)
             {
