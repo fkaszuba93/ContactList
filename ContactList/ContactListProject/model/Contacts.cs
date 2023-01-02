@@ -25,5 +25,10 @@ namespace ContactListProject.model
             }
             return contacts;
         }
+
+        public List<string> ToStringList()
+        {
+            return contactList.ConvertAll(contact => contact.ToString());
+        }
     }
 }
