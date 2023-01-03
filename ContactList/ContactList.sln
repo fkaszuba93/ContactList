@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactListProject", "ContactListProject\ContactListProject.csproj", "{8570567F-703E-43FD-8C53-2B93CB9446DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactListProject", "ContactListProject\ContactListProject.csproj", "{8570567F-703E-43FD-8C53-2B93CB9446DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactListTest", "ContactListTest\ContactListTest.csproj", "{ABA30999-7404-4FF0-B532-78007CCE7ECD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{8570567F-703E-43FD-8C53-2B93CB9446DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8570567F-703E-43FD-8C53-2B93CB9446DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8570567F-703E-43FD-8C53-2B93CB9446DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABA30999-7404-4FF0-B532-78007CCE7ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABA30999-7404-4FF0-B532-78007CCE7ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABA30999-7404-4FF0-B532-78007CCE7ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABA30999-7404-4FF0-B532-78007CCE7ECD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

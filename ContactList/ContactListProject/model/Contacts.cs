@@ -27,6 +27,16 @@ namespace ContactListProject.model
             return contacts;
         }
 
+        public List<Contact> GetList()
+        {
+            return contactList;
+        }
+
+        public void Add(Contact contact)
+        {
+            contactList.Add(contact);
+        }
+
         public void SortList()
         {
             var sortedList = 
