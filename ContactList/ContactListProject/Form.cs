@@ -20,10 +20,17 @@ namespace ContactListProject
 
         private void Form_Load(object sender, EventArgs e)
         {
-            Contacts contacts = Contacts.ReadFromFile("c:\\fk\\temp\\companies_data.csv");
-            contacts.SortList();
-            PopulateListView(contacts);
-            PopulateTreeView(contacts);
+            try
+            {
+                Contacts contacts = Contacts.ReadFromFile("c:\\fk\\temp\\companies_data.csv");
+                contacts.SortList();
+                PopulateListView(contacts);
+                PopulateTreeView(contacts);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void PopulateListView(Contacts contacts)
