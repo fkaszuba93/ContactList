@@ -20,17 +20,6 @@ namespace ContactListProject
 
         private void Form_Load(object sender, EventArgs e)
         {
-            try
-            {
-                Contacts contacts = Contacts.ReadFromFile("c:\\fk\\temp\\companies_data.csv");
-                contacts.SortList();
-                PopulateListView(contacts);
-                PopulateTreeView(contacts);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void PopulateListView(Contacts contacts)
@@ -81,6 +70,30 @@ namespace ContactListProject
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
+        }
+
+        private void importCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = openFileDialog.FileName;
+                try
+                {
+                    Contacts contacts = Contacts.ReadFromFile(path);
+                    contacts.SortList();
+                    PopulateListView(contacts);
+                    PopulateTreeView(contacts);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void exportCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog.ShowDialog();
         }
     }
 }
