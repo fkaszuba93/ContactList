@@ -1,4 +1,5 @@
 ﻿using ContactListProject.model;
+using ContactListProject.IO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -76,10 +77,10 @@ namespace ContactListProject
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string path = openFileDialog.FileName;
                 try
                 {
-                    Contacts contacts = Contacts.ReadFromFile(path);
+                    ContactsFileReader fileReader = new ContactsFileReader(openFileDialog.FileName);
+                    Contacts contacts = fileReader.ReadContacts();
                     contacts.SortList();
                     PopulateListView(contacts);
                     PopulateTreeView(contacts);
