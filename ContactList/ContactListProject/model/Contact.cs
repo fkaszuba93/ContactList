@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace ContactListProject.model
@@ -53,6 +54,19 @@ namespace ContactListProject.model
         public override string ToString()
         {
             return FirstName + " " + LastName + ", " + Company + ", " + Position;
+        }
+
+        public string ToCSVString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(RowId).Append(",").Append(ParentId).Append(",")
+                .Append(FirstName).Append(",").Append(LastName).Append(",")
+                .Append(Company).Append(",").Append(Location).Append(",").Append(Position);
+            foreach (string number in PhoneNumbers)
+            {
+                sb.Append(",").Append(number);
+            }
+            return sb.ToString();
         }
     }
 }

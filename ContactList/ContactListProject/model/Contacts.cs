@@ -54,5 +54,10 @@ namespace ContactListProject.model
             hierarchyTree.RemoveAll(contact => contact.ParentId != 0);
             return hierarchyTree;
         }
+
+        public List<string> ToCSVList()
+        {
+            return contactList.ConvertAll(contact => contact.ToCSVString());
+        }
     }
 }

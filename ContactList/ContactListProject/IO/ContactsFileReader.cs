@@ -6,14 +6,9 @@ using System.Text;
 
 namespace ContactListProject.IO
 {
-    public class ContactsFileReader
+    public class ContactsFileReader : ContactsIO
     {
-        private string path;
-
-        public ContactsFileReader(string path)
-        {
-            this.path = path ?? throw new ArgumentNullException(nameof(path));
-        }
+        public ContactsFileReader(string path) : base(path) { }
 
         public Contacts ReadContacts()
         {

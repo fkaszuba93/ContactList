@@ -14,6 +14,8 @@ namespace ContactListProject
 {
     public partial class Form : System.Windows.Forms.Form
     {
+        private Contacts contacts;
+
         public Form()
         {
             InitializeComponent();
@@ -80,7 +82,7 @@ namespace ContactListProject
                 try
                 {
                     ContactsFileReader fileReader = new ContactsFileReader(openFileDialog.FileName);
-                    Contacts contacts = fileReader.ReadContacts();
+                    contacts = fileReader.ReadContacts();
                     contacts.SortList();
                     PopulateListView(contacts);
                     PopulateTreeView(contacts);
@@ -94,7 +96,18 @@ namespace ContactListProject
 
         private void exportCSVToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            saveFileDialog.ShowDialog();
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    ContactsFileWriter fileWriter = new ContactsFileWriter(saveFileDialog.FileName);
+                    fileWriter.SaveContacts(contacts);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
