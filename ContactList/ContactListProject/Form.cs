@@ -86,10 +86,14 @@ namespace ContactListProject
                     contacts.SortList();
                     PopulateListView(contacts);
                     PopulateTreeView(contacts);
+                    if (fileReader.Status != ContactsFileReader.OK)
+                    {
+                        ShowErrorMessage(fileReader.Status);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ShowErrorMessage(ex.Message);
                 }
             }
         }
@@ -105,9 +109,14 @@ namespace ContactListProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ShowErrorMessage(ex.Message);
                 }
             }
+        }
+
+        private static void ShowErrorMessage(string msg)
+        {
+            MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
