@@ -1,15 +1,25 @@
 using NUnit.Framework;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using ContactListProject.model;
+using ContactListProject.IO;
 
 namespace ContactListTest
 {
     public class UnitTest
     {
+        private Contacts contacts;
+
         [SetUp]
         public void Setup()
         {
+            contacts = new Contacts();
+            var emptyList = new List<string>();
+            contacts.Add(new Contact(2, 1, "Jackie", "Smith", "IBM", "Johannesburg", "Assistant Director", emptyList));
+            contacts.Add(new Contact(1, 0, "Peter", "Ndoro", "IBM", "Johannesburg", "Managing Director", emptyList));
+            contacts.Add(new Contact(7, 0, "Mathew", "Burke", "Microsoft", "Johannesburg", "Account Manager", emptyList));
+            contacts.Add(new Contact(33, 1, "Chris", "Thorpe", "IBM", "Johannesburg", "Technical Director", emptyList));
         }
 
         [Test]
@@ -39,23 +49,17 @@ namespace ContactListTest
         }
 
         [Test]
-        public void TestReadFromFile()
+        public void TestContactToCSVString()
         {
-            string path = "..\\..\\..\\companies_data.csv";
-            Contacts contacts = Contacts.ReadFromFile(path);
+            Contact contact = new Contact(2, 1, "Jackie", "Smith", "IBM", "Johannesburg", "Assistant Director", new List<string>());
+            string csv = contact.ToCSVString(), expected = "2,1,Jackie,Smith,IBM,Johannesburg,Assistant Director";
 
-            Assert.IsTrue(contacts.GetList().Count > 0);
+            Assert.AreEqual(expected, csv);
         }
 
         [Test]
         public void TestSortList()
         {
-            Contacts contacts = new Contacts();
-            contacts.Add(new Contact(2, 1, "Jackie", "Smith", "IBM", "Johannesburg", "Assistant Director", null));
-            contacts.Add(new Contact(1, 0, "Peter", "Ndoro", "IBM", "Johannesburg", "Managing Director", null));
-            contacts.Add(new Contact(7, 0, "Mathew", "Burke", "Microsoft", "Johannesburg", "Account Manager", null));
-            contacts.Add(new Contact(33, 1, "Chris", "Thorpe", "IBM", "Johannesburg", "Technical Director", null));
-
             contacts.SortList();
             List<Contact> list = contacts.GetList();
 
@@ -68,15 +72,32 @@ namespace ContactListTest
         [Test]
         public void TestToHierarchyTree()
         {
-            Contacts contacts = new Contacts();
-            contacts.Add(new Contact(1, 0, "Peter", "Ndoro", "IBM", "Johannesburg", "Managing Director", null));
-            contacts.Add(new Contact(2, 1, "Jackie", "Smith", "IBM", "Johannesburg", "Assistant Director", null));
-            contacts.Add(new Contact(33, 1, "Chris", "Thorpe", "IBM", "Johannesburg", "Technical Director", null));
-
             List<Contact> tree = contacts.ToHierarchyTree();
 
-            Assert.IsTrue(tree.Count == 1);
+            Assert.AreEqual(2, tree.Count);
             Assert.IsTrue(tree[0].Subordinates.Count > 0);
+        }
+
+        [Test]
+        public void TestReadContactsFromFile()
+        {
+            ContactsFileReader fileReader = new ContactsFileReader("..\\..\\..\\companies_data.csv");
+            Contacts contacts = fileReader.ReadContacts();
+
+            Assert.AreEqual(ContactsFileReader.OK, fileReader.Status);
+            Assert.IsTrue(contacts.GetList().Count > 0);
+        }
+
+        [Test]
+        public void TestSaveContactsToFile()
+        {
+            string path = "data.csv";
+            ContactsFileWriter fileWriter = new ContactsFileWriter(path);
+            fileWriter.SaveContacts(contacts);
+            FileInfo file = new FileInfo(path);
+
+            Assert.IsTrue(file.Exists);
+            Assert.IsTrue(file.Length > 0);
         }
     }
 }
