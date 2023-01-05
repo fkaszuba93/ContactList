@@ -19,6 +19,10 @@ namespace ContactListProject
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importCSVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportCSVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newContactToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem contactDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSelectedToolStripMenuItem;
 
         /// <summary>
         ///  Clean up any resources being used.
@@ -51,6 +55,10 @@ namespace ContactListProject
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newContactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contactDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.tabControl.SuspendLayout();
             this.listPage.SuspendLayout();
@@ -61,6 +69,7 @@ namespace ContactListProject
             // listView
             // 
             this.listView.Alignment = System.Windows.Forms.ListViewAlignment.Default;
+            this.listView.CheckBoxes = true;
             this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView.HideSelection = false;
             this.listView.Location = new System.Drawing.Point(3, 3);
@@ -70,6 +79,7 @@ namespace ContactListProject
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.List;
             this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
+            this.listView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView_ItemChecked);
             // 
             // tabControl
             // 
@@ -107,6 +117,7 @@ namespace ContactListProject
             // 
             // treeView
             // 
+            this.treeView.CheckBoxes = true;
             this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView.Location = new System.Drawing.Point(3, 3);
             this.treeView.Name = "treeView";
@@ -122,7 +133,8 @@ namespace ContactListProject
             // 
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(800, 28);
@@ -151,6 +163,39 @@ namespace ContactListProject
             this.exportCSVToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
             this.exportCSVToolStripMenuItem.Text = "Export CSV";
             this.exportCSVToolStripMenuItem.Click += new System.EventHandler(this.exportCSVToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newContactToolStripMenuItem,
+            this.contactDetailsToolStripMenuItem,
+            this.deleteSelectedToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // newContactToolStripMenuItem
+            // 
+            this.newContactToolStripMenuItem.Name = "newContactToolStripMenuItem";
+            this.newContactToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.newContactToolStripMenuItem.Text = "Add new contact";
+            this.newContactToolStripMenuItem.Click += new System.EventHandler(this.newContactToolStripMenuItem_Click);
+            // 
+            // contactDetailsToolStripMenuItem
+            // 
+            this.contactDetailsToolStripMenuItem.Enabled = false;
+            this.contactDetailsToolStripMenuItem.Name = "contactDetailsToolStripMenuItem";
+            this.contactDetailsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.contactDetailsToolStripMenuItem.Text = "Contact details";
+            this.contactDetailsToolStripMenuItem.Click += new System.EventHandler(this.contactDetailsToolStripMenuItem_Click);
+            // 
+            // deleteSelectedToolStripMenuItem
+            // 
+            this.deleteSelectedToolStripMenuItem.Enabled = false;
+            this.deleteSelectedToolStripMenuItem.Name = "deleteSelectedToolStripMenuItem";
+            this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.deleteSelectedToolStripMenuItem.Text = "Delete selected";
+            this.deleteSelectedToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedToolStripMenuItem_Click);
             // 
             // saveFileDialog
             // 
