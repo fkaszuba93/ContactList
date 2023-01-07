@@ -69,7 +69,6 @@ namespace ContactListProject
             // listView
             // 
             this.listView.Alignment = System.Windows.Forms.ListViewAlignment.Default;
-            this.listView.CheckBoxes = true;
             this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView.HideSelection = false;
             this.listView.Location = new System.Drawing.Point(3, 3);
@@ -79,7 +78,6 @@ namespace ContactListProject
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.List;
             this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
-            this.listView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView_ItemChecked);
             // 
             // tabControl
             // 
@@ -117,7 +115,6 @@ namespace ContactListProject
             // 
             // treeView
             // 
-            this.treeView.CheckBoxes = true;
             this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView.Location = new System.Drawing.Point(3, 3);
             this.treeView.Name = "treeView";
@@ -177,7 +174,7 @@ namespace ContactListProject
             // newContactToolStripMenuItem
             // 
             this.newContactToolStripMenuItem.Name = "newContactToolStripMenuItem";
-            this.newContactToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.newContactToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
             this.newContactToolStripMenuItem.Text = "Add new contact";
             this.newContactToolStripMenuItem.Click += new System.EventHandler(this.newContactToolStripMenuItem_Click);
             // 
@@ -185,7 +182,7 @@ namespace ContactListProject
             // 
             this.contactDetailsToolStripMenuItem.Enabled = false;
             this.contactDetailsToolStripMenuItem.Name = "contactDetailsToolStripMenuItem";
-            this.contactDetailsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.contactDetailsToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
             this.contactDetailsToolStripMenuItem.Text = "Contact details";
             this.contactDetailsToolStripMenuItem.Click += new System.EventHandler(this.contactDetailsToolStripMenuItem_Click);
             // 
@@ -193,7 +190,7 @@ namespace ContactListProject
             // 
             this.deleteSelectedToolStripMenuItem.Enabled = false;
             this.deleteSelectedToolStripMenuItem.Name = "deleteSelectedToolStripMenuItem";
-            this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
             this.deleteSelectedToolStripMenuItem.Text = "Delete selected";
             this.deleteSelectedToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedToolStripMenuItem_Click);
             // 

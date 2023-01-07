@@ -62,14 +62,7 @@ namespace ContactListProject
 
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedItems = listView.SelectedItems.Count, checkedItems = listView.CheckedItems.Count;
-            contactDetailsToolStripMenuItem.Enabled = selectedItems == 1;
-            deleteSelectedToolStripMenuItem.Enabled = selectedItems > 0 || checkedItems > 0;
-        }
-
-        private void listView_ItemChecked(object sender, EventArgs e)
-        {
-            deleteSelectedToolStripMenuItem.Enabled = listView.CheckedItems.Count > 0 || listView.SelectedItems.Count > 0;
+            UpdateEditMenu();
         }
 
         private void listPage_Click(object sender, EventArgs e)
@@ -133,7 +126,22 @@ namespace ContactListProject
 
         private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string msg = "Are you sure you want to delete selected contacts?";
+            var result = MessageBox.Show(msg, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                foreach (ListViewItem item in listView.SelectedItems)
+                {
+                    listView.Items.Remove(item);
+                }
+            }
+        }
 
+        private void UpdateEditMenu()
+        {
+            int selectedItems = listView.SelectedItems.Count;
+            contactDetailsToolStripMenuItem.Enabled = selectedItems == 1;
+            deleteSelectedToolStripMenuItem.Enabled = selectedItems > 0;
         }
 
         private static void ShowErrorMessage(string msg)
