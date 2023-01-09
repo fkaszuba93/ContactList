@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace ContactListProject
 {
-    public partial class Form : System.Windows.Forms.Form
+    public partial class MainForm : System.Windows.Forms.Form
     {
         private Contacts contacts;
 
-        public Form()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -116,12 +116,12 @@ namespace ContactListProject
 
         private void newContactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            new DetailsForm().Show();
         }
 
         private void contactDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            new DetailsForm().Show();
         }
 
         private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
