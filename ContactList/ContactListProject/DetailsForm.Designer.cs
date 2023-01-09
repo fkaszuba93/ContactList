@@ -48,6 +48,8 @@ namespace ContactListProject
             this.phone3TextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // firstNameTextBox
@@ -57,6 +59,7 @@ namespace ContactListProject
             this.firstNameTextBox.Size = new System.Drawing.Size(125, 27);
             this.firstNameTextBox.TabIndex = 0;
             this.firstNameTextBox.WordWrap = false;
+            this.firstNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.firstNameTextBox_Validating);
             // 
             // firstNameLabel
             // 
@@ -82,6 +85,7 @@ namespace ContactListProject
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(125, 27);
             this.lastNameTextBox.TabIndex = 3;
+            this.lastNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.lastNameTextBox_Validating);
             // 
             // locationLabel
             // 
@@ -98,6 +102,7 @@ namespace ContactListProject
             this.locationTextBox.Name = "locationTextBox";
             this.locationTextBox.Size = new System.Drawing.Size(125, 27);
             this.locationTextBox.TabIndex = 5;
+            this.locationTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.locationTextBox_Validating);
             // 
             // companyLabel
             // 
@@ -114,6 +119,7 @@ namespace ContactListProject
             this.companyTextBox.Name = "companyTextBox";
             this.companyTextBox.Size = new System.Drawing.Size(125, 27);
             this.companyTextBox.TabIndex = 7;
+            this.companyTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.companyTextBox_Validating);
             // 
             // positionLabel
             // 
@@ -130,6 +136,7 @@ namespace ContactListProject
             this.positionTextBox.Name = "positionTextBox";
             this.positionTextBox.Size = new System.Drawing.Size(125, 27);
             this.positionTextBox.TabIndex = 9;
+            this.positionTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.positionTextBox_Validating);
             // 
             // phone1Label
             // 
@@ -146,6 +153,7 @@ namespace ContactListProject
             this.phone1TextBox.Name = "phone1TextBox";
             this.phone1TextBox.Size = new System.Drawing.Size(125, 27);
             this.phone1TextBox.TabIndex = 11;
+            this.phone1TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.phone1TextBox_Validating);
             // 
             // phone2Label
             // 
@@ -162,6 +170,7 @@ namespace ContactListProject
             this.phone2TextBox.Name = "phone2TextBox";
             this.phone2TextBox.Size = new System.Drawing.Size(125, 27);
             this.phone2TextBox.TabIndex = 13;
+            this.phone2TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.phone2TextBox_Validating);
             // 
             // phone3Label
             // 
@@ -178,10 +187,10 @@ namespace ContactListProject
             this.phone3TextBox.Name = "phone3TextBox";
             this.phone3TextBox.Size = new System.Drawing.Size(125, 27);
             this.phone3TextBox.TabIndex = 15;
+            this.phone3TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.phone3TextBox_Validating);
             // 
             // saveButton
             // 
-            this.saveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.saveButton.Location = new System.Drawing.Point(374, 268);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(127, 31);
@@ -200,6 +209,10 @@ namespace ContactListProject
             this.cancelButton.TabIndex = 17;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // DetailsForm
             // 
@@ -227,6 +240,7 @@ namespace ContactListProject
             this.Name = "DetailsForm";
             this.Text = "Contact details";
             this.Load += new System.EventHandler(this.DetailsForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,5 +266,6 @@ namespace ContactListProject
         private System.Windows.Forms.TextBox phone3TextBox;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
