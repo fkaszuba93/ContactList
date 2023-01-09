@@ -198,7 +198,7 @@ namespace ContactListProject
             // 
             this.saveFileDialog.DefaultExt = "csv";
             // 
-            // Form
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -206,7 +206,7 @@ namespace ContactListProject
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
-            this.Name = "Form";
+            this.Name = "MainForm";
             this.Text = "ContactList";
             this.Load += new System.EventHandler(this.Form_Load);
             this.tabControl.ResumeLayout(false);

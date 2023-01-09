@@ -25,6 +25,11 @@ namespace ContactListProject.model
             contactList.Add(contact);
         }
 
+        public void Update(int index, Contact contact)
+        {
+            contactList[index] = contact;
+        }
+
         public void SortList()
         {
             var sortedList = 

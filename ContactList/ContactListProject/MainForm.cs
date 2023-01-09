@@ -19,6 +19,7 @@ namespace ContactListProject
         public MainForm()
         {
             InitializeComponent();
+            contacts = new Contacts();
         }
 
         private void Form_Load(object sender, EventArgs e)
@@ -116,12 +117,25 @@ namespace ContactListProject
 
         private void newContactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new DetailsForm().Show();
+            DetailsForm detailsForm = new DetailsForm();
+            if (detailsForm.ShowDialog() == DialogResult.OK)
+            {
+                Contact contact = detailsForm.Contact;
+                contacts.Add(contact);
+                UpdateListView();
+            }
         }
 
         private void contactDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new DetailsForm().Show();
+            int index = listView.SelectedIndices[0];
+            Contact contact = contacts.GetList()[index];
+            DetailsForm detailsForm = new DetailsForm(contact);
+            if (detailsForm.ShowDialog() == DialogResult.OK)
+            {
+                contacts.Update(index, detailsForm.Contact);
+                UpdateListView();
+            }
         }
 
         private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
@@ -142,6 +156,12 @@ namespace ContactListProject
             int selectedItems = listView.SelectedItems.Count;
             contactDetailsToolStripMenuItem.Enabled = selectedItems == 1;
             deleteSelectedToolStripMenuItem.Enabled = selectedItems > 0;
+        }
+
+        private void UpdateListView()
+        {
+            listView.Clear();
+            PopulateListView(contacts);
         }
 
         private static void ShowErrorMessage(string msg)

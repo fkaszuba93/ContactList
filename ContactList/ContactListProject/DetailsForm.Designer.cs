@@ -29,6 +29,7 @@ namespace ContactListProject
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.firstNameLabel = new System.Windows.Forms.Label();
             this.lastNameLabel = new System.Windows.Forms.Label();
@@ -199,7 +200,6 @@ namespace ContactListProject
             this.cancelButton.TabIndex = 17;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // DetailsForm
             // 
@@ -226,6 +226,7 @@ namespace ContactListProject
             this.Controls.Add(this.firstNameTextBox);
             this.Name = "DetailsForm";
             this.Text = "Contact details";
+            this.Load += new System.EventHandler(this.DetailsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

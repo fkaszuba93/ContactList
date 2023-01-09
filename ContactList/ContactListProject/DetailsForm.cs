@@ -13,6 +13,14 @@ namespace ContactListProject
     {
         private Contact contact;
 
+        public Contact Contact
+        {
+            get
+            {
+                return contact;
+            }
+        }
+
         public DetailsForm()
         {
             InitializeComponent();
@@ -24,14 +32,28 @@ namespace ContactListProject
             InitializeComponent();
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private void DetailsForm_Load(object sender, EventArgs e)
         {
-            Close();
+            if (contact != null)
+            {
+                firstNameTextBox.Text = contact.FirstName;
+                lastNameTextBox.Text = contact.LastName;
+                locationTextBox.Text = contact.Location;
+                companyTextBox.Text = contact.Company;
+                positionTextBox.Text = contact.Position;
+                TextBox[] phoneNumbers = { phone1TextBox, phone2TextBox, phone3TextBox };
+                for (int i = 0; i < contact.PhoneNumbers.Count; i++)
+                {
+                    phoneNumbers[i].Text = contact.PhoneNumbers[i];
+                }
+            }
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void saveButton_Click(object sender, EventArgs e)
         {
-            Close();
+            string firstName = firstNameTextBox.Text, lastName = lastNameTextBox.Text, company = companyTextBox.Text,
+                location = locationTextBox.Text, position = positionTextBox.Text, phone1 = phone1TextBox.Text;
+            contact = new Contact(0, 0, firstName, lastName, company, location, position, new List<string> { phone1 });
         }
     }
 }
