@@ -30,6 +30,11 @@ namespace ContactListProject.model
             contactList[index] = contact;
         }
 
+        public void Delete(Contact contact)
+        {
+            contactList.Remove(contact);
+        }
+
         public void SortList()
         {
             var sortedList = 

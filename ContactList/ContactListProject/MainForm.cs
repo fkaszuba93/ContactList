@@ -122,7 +122,7 @@ namespace ContactListProject
             {
                 Contact contact = detailsForm.Contact;
                 contacts.Add(contact);
-                UpdateListView();
+                UpdateView();
             }
         }
 
@@ -134,7 +134,7 @@ namespace ContactListProject
             if (detailsForm.ShowDialog() == DialogResult.OK)
             {
                 contacts.Update(index, detailsForm.Contact);
-                UpdateListView();
+                UpdateView();
             }
         }
 
@@ -144,10 +144,17 @@ namespace ContactListProject
             var result = MessageBox.Show(msg, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                List<Contact> contactsToDelete = new List<Contact>();
                 foreach (ListViewItem item in listView.SelectedItems)
                 {
-                    listView.Items.Remove(item);
+                    int index = listView.Items.IndexOf(item);
+                    contactsToDelete.Add(contacts.GetList()[index]);
                 }
+                foreach (Contact contact in contactsToDelete)
+                {
+                    contacts.Delete(contact);
+                }
+                UpdateView();
             }
         }
 
@@ -158,10 +165,12 @@ namespace ContactListProject
             deleteSelectedToolStripMenuItem.Enabled = selectedItems > 0;
         }
 
-        private void UpdateListView()
+        private void UpdateView()
         {
             listView.Clear();
             PopulateListView(contacts);
+            treeView.Nodes.Clear();
+            PopulateTreeView(contacts);
         }
 
         private static void ShowErrorMessage(string msg)
