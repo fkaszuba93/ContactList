@@ -1,20 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using System.Text.RegularExpressions;
 
 namespace ContactListProject.model
 {
+    [Table("Contacts")]
     public class Contact
     {
-        public int RowId { get; }
-        public int ParentId { get; }
-        public string FirstName { get; }
-        public string LastName { get; }
-        public string Company { get; }
-        public string Location { get; }
-        public string Position { get; }
-        public List<string> PhoneNumbers { get; }
+        [Key]
+        public int RowId { get; set; }
+        public int ParentId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Company { get; set; }
+        public string Location { get; set; }
+        public string Position { get; set; }
+        public List<string> PhoneNumbers { get; set; }
         public List<Contact> Subordinates { get; set; }
 
         public static Contact Parse(string csvData)
@@ -36,6 +40,10 @@ namespace ContactListProject.model
             List<string> phoneNumbers = new List<string> { dataArray[7], dataArray[8], dataArray[9] };
 
             return new Contact(rowId, parentId, firstName, lastName, company, location, position, phoneNumbers);
+        }
+
+        public Contact()
+        {
         }
 
         public Contact(int rowId, int parentId, string firstName, string lastName, string company, string location, string position, List<string> phoneNumbers)
