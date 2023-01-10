@@ -67,7 +67,7 @@ namespace ContactListProject
                         phoneNumbers.Add(number.Text);
                     }
                 }
-                contact = new Contact(0, 0, firstName, lastName, company, location, position, phoneNumbers);
+                contact = new Contact(-1, 0, firstName, lastName, company, location, position, phoneNumbers);
             }
         }
 
