@@ -22,18 +22,18 @@ namespace ContactListProject.IO
 
         public ContactsFileReader(string path) : base(path) { }
 
-        public Contacts ReadContacts()
+        public Contacts ReadContacts(Contacts contacts, bool updateDb = true)
         {
-            Contacts contacts = new Contacts();
             StringBuilder statusStringBuilder = new StringBuilder();
             bool isError = false;
 
             var data = File.ReadLines(path);
+            List<Contact> contactList = new List<Contact>();
             foreach (string line in data)
             {
                 try
                 {
-                    contacts.Add(Contact.Parse(line));
+                    contactList.Add(Contact.Parse(line));
                 }
                 catch (ArgumentException ex)
                 {
@@ -41,6 +41,7 @@ namespace ContactListProject.IO
                     statusStringBuilder.Append(ex.Message).Append("\n\n");
                 }
             }
+            contacts.Add(contactList, updateDb);
             status = isError ? statusStringBuilder.ToString() : OK;
             return contacts;
         }

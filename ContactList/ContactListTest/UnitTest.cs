@@ -16,10 +16,10 @@ namespace ContactListTest
         {
             contacts = new Contacts();
             var emptyList = new List<string>();
-            contacts.Add(new Contact(2, 1, "Jackie", "Smith", "IBM", "Johannesburg", "Assistant Director", emptyList));
-            contacts.Add(new Contact(1, 0, "Peter", "Ndoro", "IBM", "Johannesburg", "Managing Director", emptyList));
-            contacts.Add(new Contact(7, 0, "Mathew", "Burke", "Microsoft", "Johannesburg", "Account Manager", emptyList));
-            contacts.Add(new Contact(33, 1, "Chris", "Thorpe", "IBM", "Johannesburg", "Technical Director", emptyList));
+            contacts.Add(new Contact(2, 1, "Jackie", "Smith", "IBM", "Johannesburg", "Assistant Director", emptyList), false);
+            contacts.Add(new Contact(1, 0, "Peter", "Ndoro", "IBM", "Johannesburg", "Managing Director", emptyList), false);
+            contacts.Add(new Contact(7, 0, "Mathew", "Burke", "Microsoft", "Johannesburg", "Account Manager", emptyList), false);
+            contacts.Add(new Contact(33, 1, "Chris", "Thorpe", "IBM", "Johannesburg", "Technical Director", emptyList), false);
         }
 
         [Test]
@@ -35,10 +35,10 @@ namespace ContactListTest
             Assert.AreEqual("IBM", contact.Company);
             Assert.AreEqual("Johannesburg", contact.Location);
             Assert.AreEqual("Managing Director", contact.Position);
-            Assert.AreEqual(3, contact.PhoneNumbers.Count);
-            Assert.AreEqual("0762349827", contact.PhoneNumbers[0]);
-            Assert.AreEqual("0116725362", contact.PhoneNumbers[1]);
-            Assert.AreEqual("0116725368", contact.PhoneNumbers[2]);
+            Assert.AreEqual(3, contact.GetPhoneNumbers().Count);
+            Assert.AreEqual("0762349827", contact.GetPhoneNumbers()[0]);
+            Assert.AreEqual("0116725362", contact.GetPhoneNumbers()[1]);
+            Assert.AreEqual("0116725368", contact.GetPhoneNumbers()[2]);
         }
 
         [Test]
@@ -82,7 +82,7 @@ namespace ContactListTest
         public void TestReadContactsFromFile()
         {
             ContactsFileReader fileReader = new ContactsFileReader("..\\..\\..\\companies_data.csv");
-            Contacts contacts = fileReader.ReadContacts();
+            Contacts contacts = fileReader.ReadContacts(this.contacts, false);
 
             Assert.AreEqual(ContactsFileReader.OK, fileReader.Status);
             Assert.IsTrue(contacts.GetList().Count > 0);

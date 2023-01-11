@@ -45,9 +45,10 @@ namespace ContactListProject
                 companyTextBox.Text = contact.Company;
                 positionTextBox.Text = contact.Position;
                 TextBox[] phoneNumbers = { phone1TextBox, phone2TextBox, phone3TextBox };
-                for (int i = 0; i < contact.PhoneNumbers.Count; i++)
+                List<string> phoneNumbersList = contact.GetPhoneNumbers();
+                for (int i = 0; i < phoneNumbersList.Count && i < phoneNumbers.Length; i++)
                 {
-                    phoneNumbers[i].Text = contact.PhoneNumbers[i];
+                    phoneNumbers[i].Text = phoneNumbersList[i];
                 }
             }
         }

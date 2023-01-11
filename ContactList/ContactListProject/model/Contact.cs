@@ -11,15 +11,47 @@ namespace ContactListProject.model
     public class Contact
     {
         [Key]
+        public int Id { get; set; }
+
+        [Column("RowId")]
         public int RowId { get; set; }
+        
+        [Column("ParentId")]
         public int ParentId { get; set; }
+        
+        [Column("FirstName")]
         public string FirstName { get; set; }
+
+        [Column("LastName")]
         public string LastName { get; set; }
+
+        [Column("Company")]
         public string Company { get; set; }
+
+        [Column("Location")]
         public string Location { get; set; }
+
+        [Column("Position")]
         public string Position { get; set; }
-        public List<string> PhoneNumbers { get; set; }
+
+        [Column("PhoneNumbers")]
+        public string PhoneNumbers { get; set; }
+        
+        [NotMapped]
         public List<Contact> Subordinates { get; set; }
+
+        private List<string> phoneNumbersList;
+
+        public List<string> GetPhoneNumbers()
+        {
+            return phoneNumbersList;
+        }
+
+        public void SetPhoneNumbers(List<string> value)
+        {
+            phoneNumbersList = value;
+        }
+
 
         public static Contact Parse(string csvData)
         {
@@ -55,7 +87,8 @@ namespace ContactListProject.model
             Company = company;
             Location = location;
             Position = position;
-            PhoneNumbers = phoneNumbers;
+            phoneNumbersList = phoneNumbers;
+            PhoneNumbers = phoneNumbersListToString();
             Subordinates = new List<Contact>();
         }
 
@@ -70,11 +103,27 @@ namespace ContactListProject.model
             sb.Append(RowId).Append(",").Append(ParentId).Append(",")
                 .Append(FirstName).Append(",").Append(LastName).Append(",")
                 .Append(Company).Append(",").Append(Location).Append(",").Append(Position);
-            foreach (string number in PhoneNumbers)
+            foreach (string number in phoneNumbersList)
             {
                 sb.Append(",").Append(number);
             }
             return sb.ToString();
+        }
+
+        private string phoneNumbersListToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (string ph in phoneNumbersList)
+            {
+                sb.Append(ph).Append(',');
+            }
+            sb.Remove(sb.Length - 1, 1);
+            return sb.ToString();
+        }
+
+        private List<string> phoneNumbersStringToList()
+        {
+            return new List<string>(PhoneNumbers.Split(","));
         }
     }
 }

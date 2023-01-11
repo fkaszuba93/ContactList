@@ -83,7 +83,7 @@ namespace ContactListProject
                 try
                 {
                     ContactsFileReader fileReader = new ContactsFileReader(openFileDialog.FileName);
-                    contacts = fileReader.ReadContacts();
+                    contacts = fileReader.ReadContacts(contacts);
                     contacts.SortList();
                     PopulateListView(contacts);
                     PopulateTreeView(contacts);

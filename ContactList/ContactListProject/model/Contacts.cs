@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContactListProject.DAL;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,19 +21,51 @@ namespace ContactListProject.model
             return contactList;
         }
 
-        public void Add(Contact contact)
+        public void Add(Contact contact, bool updateDb = true)
         {
+            contact.RowId = contactList.Count + 1;
+            while (contactList.Exists(c => c.RowId == contact.RowId))
+            {
+                contact.RowId++;
+            }
             contactList.Add(contact);
+
+            if (updateDb) 
+            {
+                using var dbContext = new ContactsContext();
+                dbContext.Add(contact);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public void Add(List<Contact> list, bool updateDb = true)
+        {
+            contactList.AddRange(list);
+            
+            if (updateDb)
+            {
+                using var dbContext = new ContactsContext();
+                dbContext.Contacts.AddRange(contactList);
+                dbContext.SaveChanges();
+            }
         }
 
         public void Update(int index, Contact contact)
         {
             contactList[index] = contact;
+
+            using var dbContext = new ContactsContext();
+            dbContext.Update(contact);
+            dbContext.SaveChanges();
         }
 
         public void Delete(Contact contact)
         {
             contactList.Remove(contact);
+
+            using var dbContext = new ContactsContext();
+            dbContext.Remove(contact);
+            dbContext.SaveChanges();
         }
 
         public void SortList()
