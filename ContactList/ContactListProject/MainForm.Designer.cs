@@ -100,7 +100,6 @@ namespace ContactListProject
             this.listPage.TabIndex = 0;
             this.listPage.Text = "List";
             this.listPage.UseVisualStyleBackColor = true;
-            this.listPage.Click += new System.EventHandler(this.listPage_Click);
             // 
             // treePage
             // 
@@ -120,7 +119,6 @@ namespace ContactListProject
             this.treeView.Name = "treeView";
             this.treeView.Size = new System.Drawing.Size(786, 383);
             this.treeView.TabIndex = 0;
-            this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             // 
             // openFileDialog
             // 

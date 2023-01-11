@@ -42,17 +42,6 @@ namespace ContactListProject.model
 
         private List<string> phoneNumbersList;
 
-        public List<string> GetPhoneNumbers()
-        {
-            return phoneNumbersList;
-        }
-
-        public void SetPhoneNumbers(List<string> value)
-        {
-            phoneNumbersList = value;
-        }
-
-
         public static Contact Parse(string csvData)
         {
             Regex dataFormatRegex = new Regex("^([0-9]+,){2}([A-Za-z ]+,){4}[A-Za-z ]+(,[0-9]{10})+$");
@@ -92,6 +81,20 @@ namespace ContactListProject.model
             Subordinates = new List<Contact>();
         }
 
+        public List<string> GetPhoneNumbers()
+        {
+            if (phoneNumbersList == null)
+            {
+                phoneNumbersList = phoneNumbersStringToList();
+            }
+            return phoneNumbersList;
+        }
+
+        public void SetPhoneNumbers(List<string> value)
+        {
+            phoneNumbersList = value;
+        }
+
         public override string ToString()
         {
             return FirstName + " " + LastName + ", " + Company + ", " + Position;
@@ -117,7 +120,10 @@ namespace ContactListProject.model
             {
                 sb.Append(ph).Append(',');
             }
-            sb.Remove(sb.Length - 1, 1);
+            if (sb.Length > 0)
+            {
+                sb.Remove(sb.Length - 1, 1);
+            }
             return sb.ToString();
         }
 

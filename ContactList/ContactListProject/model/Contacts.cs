@@ -33,10 +33,13 @@ namespace ContactListProject.model
 
         public void Add(Contact contact, bool updateDb = true)
         {
-            contact.RowId = contactList.Count + 1;
-            while (contactList.Exists(c => c.RowId == contact.RowId))
+            if (contact.RowId == -1)
             {
-                contact.RowId++;
+                contact.RowId = contactList.Count + 1;
+                while (contactList.Exists(c => c.RowId == contact.RowId))
+                {
+                    contact.RowId++;
+                }
             }
             contactList.Add(contact);
 

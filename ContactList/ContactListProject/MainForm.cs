@@ -24,10 +24,11 @@ namespace ContactListProject
         private void Form_Load(object sender, EventArgs e)
         {
             contacts = Contacts.LoadFromDatabase();
+            contacts.SortList();
             UpdateView();
         }
 
-        private void PopulateListView(Contacts contacts)
+        private void PopulateListView()
         {
             List<string> items = contacts.ToStringList();
             foreach (string item in items)
@@ -36,7 +37,7 @@ namespace ContactListProject
             }
         }
 
-        private void PopulateTreeView(Contacts contacts)
+        private void PopulateTreeView()
         {
             List<Contact> hierarchyTree = contacts.ToHierarchyTree();
             foreach (Contact contact in hierarchyTree)
@@ -67,16 +68,6 @@ namespace ContactListProject
             UpdateEditMenu();
         }
 
-        private void listPage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
         private void importCSVToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -86,8 +77,7 @@ namespace ContactListProject
                     ContactsFileReader fileReader = new ContactsFileReader(openFileDialog.FileName);
                     contacts = fileReader.ReadContacts(contacts);
                     contacts.SortList();
-                    PopulateListView(contacts);
-                    PopulateTreeView(contacts);
+                    UpdateView();
                     if (fileReader.Status != ContactsFileReader.OK)
                     {
                         ShowErrorMessage(fileReader.Status);
@@ -169,9 +159,9 @@ namespace ContactListProject
         private void UpdateView()
         {
             listView.Clear();
-            PopulateListView(contacts);
+            PopulateListView();
             treeView.Nodes.Clear();
-            PopulateTreeView(contacts);
+            PopulateTreeView();
         }
 
         private static void ShowErrorMessage(string msg)
