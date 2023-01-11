@@ -68,7 +68,19 @@ namespace ContactListProject
                         phoneNumbers.Add(number.Text);
                     }
                 }
-                contact = new Contact(-1, 0, firstName, lastName, company, location, position, phoneNumbers);
+                if (contact == null)
+                {
+                    contact = new Contact(-1, 0, firstName, lastName, company, location, position, phoneNumbers);
+                }
+                else
+                {
+                    contact.FirstName = firstNameTextBox.Text;
+                    contact.LastName = lastNameTextBox.Text;
+                    contact.Company = companyTextBox.Text;
+                    contact.Location = locationTextBox.Text;
+                    contact.Position = positionTextBox.Text;
+                    contact.SetPhoneNumbers(phoneNumbers);
+                }
             }
         }
 
