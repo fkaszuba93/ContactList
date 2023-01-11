@@ -19,11 +19,12 @@ namespace ContactListProject
         public MainForm()
         {
             InitializeComponent();
-            contacts = new Contacts();
         }
 
         private void Form_Load(object sender, EventArgs e)
         {
+            contacts = Contacts.LoadFromDatabase();
+            UpdateView();
         }
 
         private void PopulateListView(Contacts contacts)

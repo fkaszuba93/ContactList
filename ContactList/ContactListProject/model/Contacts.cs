@@ -16,6 +16,16 @@ namespace ContactListProject.model
             contactList = new List<Contact>();
         }
 
+        public static Contacts LoadFromDatabase()
+        {
+            Contacts contacts = new Contacts();
+
+            using var dbContext = new ContactsContext();
+            contacts.contactList = dbContext.Contacts.ToList();
+
+            return contacts;
+        }
+
         public List<Contact> GetList()
         {
             return contactList;
