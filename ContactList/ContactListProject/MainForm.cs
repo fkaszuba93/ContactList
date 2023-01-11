@@ -30,9 +30,14 @@ namespace ContactListProject
 
         private void PopulateListView()
         {
-            List<string> items = contacts.ToStringList();
-            foreach (string item in items)
+            List<Contact> list = contacts.GetList();
+            foreach (Contact contact in list)
             {
+                ListViewItem item = new ListViewItem(new[] {
+                    contact.FirstName + " " + contact.LastName, 
+                    contact.Company, 
+                    contact.Location, 
+                    contact.PhoneNumbers });
                 listView.Items.Add(item);
             }
         }
@@ -158,7 +163,7 @@ namespace ContactListProject
 
         private void UpdateView()
         {
-            listView.Clear();
+            listView.Items.Clear();
             PopulateListView();
             treeView.Nodes.Clear();
             PopulateTreeView();

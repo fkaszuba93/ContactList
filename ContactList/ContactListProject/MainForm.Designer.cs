@@ -23,6 +23,10 @@ namespace ContactListProject
         private System.Windows.Forms.ToolStripMenuItem newContactToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contactDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader nameColumnHeader;
+        private System.Windows.Forms.ColumnHeader companyColumnHeader;
+        private System.Windows.Forms.ColumnHeader locationColumnHeader;
+        private System.Windows.Forms.ColumnHeader phoneColumnHeader;
 
         /// <summary>
         ///  Clean up any resources being used.
@@ -46,6 +50,10 @@ namespace ContactListProject
         private void InitializeComponent()
         {
             this.listView = new System.Windows.Forms.ListView();
+            this.nameColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.companyColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.locationColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.phoneColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.listPage = new System.Windows.Forms.TabPage();
             this.treePage = new System.Windows.Forms.TabPage();
@@ -69,15 +77,39 @@ namespace ContactListProject
             // listView
             // 
             this.listView.Alignment = System.Windows.Forms.ListViewAlignment.Default;
+            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameColumnHeader,
+            this.companyColumnHeader,
+            this.locationColumnHeader,
+            this.phoneColumnHeader});
             this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView.HideSelection = false;
             this.listView.Location = new System.Drawing.Point(3, 3);
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(786, 383);
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
-            this.listView.View = System.Windows.Forms.View.List;
+            this.listView.View = System.Windows.Forms.View.Details;
             this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
+            // 
+            // nameColumnHeader
+            // 
+            this.nameColumnHeader.Text = "Name";
+            this.nameColumnHeader.Width = 200;
+            // 
+            // companyColumnHeader
+            // 
+            this.companyColumnHeader.Text = "Company";
+            this.companyColumnHeader.Width = 180;
+            // 
+            // locationColumnHeader
+            // 
+            this.locationColumnHeader.Text = "Location";
+            this.locationColumnHeader.Width = 180;
+            // 
+            // phoneColumnHeader
+            // 
+            this.phoneColumnHeader.Text = "Phone";
+            this.phoneColumnHeader.Width = 200;
             // 
             // tabControl
             // 
